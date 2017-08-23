@@ -22,6 +22,14 @@
                  <a class= "nav-item {% if page.url contains current[1] %}active{% endif %}"
                     href="{{ page.url }}" aria-label="{% if page.descriptiveTitle %}{{ page.descriptiveTitle }}{% else %}{{ page.title }}{% endif %}">
                     {{ page.title }}
+                    {% if page.title == 'Contact' %}
+                        <ul class="nav-item-sub">
+                            <li>{% include icon-matrix.html %}</li>
+                            <li>{% include icon-email.html %}</li>
+                            <li>{% include icon-github.html username=site.github_username %}</li>     
+                            <li>{% include icon-twitter.html username=site.twitter_username %}</li>    
+                        </ul>
+                    {% endif %} 
                  </a>
                </li>
              {% endif %}
