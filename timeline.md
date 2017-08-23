@@ -1,8 +1,8 @@
 ---
 layout: page
-parent: Get Involved
+parent: About
 title: Timeline
-order: 4
+order: 1
 ---
 
 <div class="timeline">
