@@ -1,11 +1,13 @@
 var map = null;
 var infowindow = null;
 var markers = [];
+var vectorSource;
 var currentNodeListURL;
 var circle = null;
 
 function initialize() {
 	
+		
 	//Current Node URL with random bits to make sure it doesnt get cached
 	currentNodeListURL = document.getElementById("nodeURL").value + "?ramd=" + new Date();
 
@@ -17,18 +19,34 @@ function initialize() {
 	//Prepare default view and create map
 	var mapOptions = {
 		zoom: 12,
-		center: new google.maps.LatLng(43.698136, -79.397593),
-		mapTypeId: google.maps.MapTypeId.ROADMAP
+		center: ol.proj.fromLonLat([-79.397593,43.698136])
 	}
-
-	infowindow = new google.maps.InfoWindow({
-		content: "holding..."
-	});
-	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
 	//Reset markers array
 	markers = undefined;
 	markers = [];
+
+	vectorSource = new ol.source.Vector({	      
+    });
+		
+		
+	var vectorLayer = new ol.layer.Vector({
+    	source: vectorSource,
+	});
+	
+
+		
+		map = new ol.Map({
+        target: 'map_canvas',
+        layers: [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          }),
+			vectorLayer
+        ],
+        view: new ol.View(mapOptions)
+      });
+
 
 	//Pull and process node url
 	jQuery.getJSON(currentNodeListURL, function (data) {
@@ -52,19 +70,25 @@ function initialize() {
 				//prepare location point
 				var lat = results['latitude'];
 				var lng = results['longitude'];
-				var myNodeLatLng = new google.maps.LatLng(lat, lng);
+				var myNodeLatLng = [lng,lat];
 				var myNodeName = results['name'];
 				
 				//Call function to create (or update) marker
 				var newNode = addMarker(map, results, myNodeName, myNodeLatLng);
 
 				//If new node was created (rather then updated) add it to the marker array
-				if (newNode)
+				if (newNode) {
 					markers.push(newNode);
+					vectorSource.addFeature(newNode);
+				}
+				
 								
-			}
+			}			
 		}
+		
 
+
+/*
 		//Clustering code to group markers that are very close together untill you zoom in (if option enabled)
 		if (zoomGroup) {
 			var mcOptions = {
@@ -74,13 +98,17 @@ function initialize() {
 			};
 			var mc = new MarkerClusterer(map, markers, mcOptions);
 		}
+*/		
 
 	});
 }
 
 //Find a marker witth a specific lat lng and dir combo.  Used so that we dont create a new marker but rather add info to the existing one.
 function findMarker(lat, lng, dir) {
+	return undefined;
+	
 	for (var i = 0; i < markers.length; i++) {
+		alert(markers[i].getStyle().getImage().lat);
 		if (markers[i].position.lat() == lat &&
 			markers[i].position.lng() == lng &&
 			markers[i].direction == dir) {
@@ -89,6 +117,7 @@ function findMarker(lat, lng, dir) {
 	}
 	return undefined;
 }
+
 
 //Tries to find marker that already exists and updates it otherwise creates a new one
 function addMarker(map, nodeResult, name, location) {
@@ -122,7 +151,7 @@ function addMarker(map, nodeResult, name, location) {
 
 	
 	//Check to see if the currenty direction,lat,lng combo exists
-	var marker = findMarker(location.lat(), location.lng(), ArrowDirection);
+	var marker = findMarker(location[1], location[0], ArrowDirection);
 
 	//Prepare the image used to display the direction arrow and node color
 	var IMG = '/images/map/arrow-' + ArrowDirection.toLowerCase().replace(" ", "") + '-' + nodeColor + '.png';
@@ -159,22 +188,31 @@ function addMarker(map, nodeResult, name, location) {
 				break;
 		}
 
-		var imageAnchor = new google.maps.Point(x, y);
+		var imageAnchor = [x, y];
 
-		//Create a new marker
-		marker = new google.maps.Marker({
-			position: location,
-			map: map,
-			title: name,
-			icon: {
-				url: IMG,
-				anchor: imageAnchor
-			},
-			direction: nodeResult['cardinalDirection'],
-			html: Description
-		});
+		//Create a new marker 
+		marker  = new ol.Feature({
+          geometry: new  
+            ol.geom.Point(ol.proj.transform(location, 'EPSG:4326',   'EPSG:3857')),
+        	html: Description,
+			lon:location[0],
+			lat:location[1],
+			direction:ArrowDirection
+        });
+		
+		marker.setStyle(
+			new ol.style.Style({
+          		image: new ol.style.Icon( ({
+          			anchor: imageAnchor,
+          			anchorXUnits: 'pixels',
+          			anchorYUnits: 'pixels',
+          			src: IMG
+          		}))
+        	})
+		);
+		return marker;
 
-		//Add listener to the marker for click
+/*		//Add listener to the marker for click
 		google.maps.event.addListener(marker, 'click', function () {
 			
 			//Code adds a circle to identiy selected marker and 
@@ -201,32 +239,68 @@ function addMarker(map, nodeResult, name, location) {
 			infowindow.close();
 		});
 		//Returns marker to identify it was created not modified
-		return marker;
+		*/
+		
+		
+		
 
 	//If marker already exists in direction and position, just add more information to the existing one.
 	} else {
-		if (marker.icon.url != IMG) {
+		var markerIMGobj=marker.getStyle().getImage();
+		var markerIMG= markerIMGobj.getSrc();
+		
+		if (markerIMG != IMG) {
 			
 			//Promot Scacked Marker is new node is better then the previous
 			//IE: if inactive and active in same macker make sure node color is green
 
 			//Update marker color if an active node exists in the "stack"
 			var markerLevel = 0;
-			if (marker.icon.url.search("-red.png") > 0) markerLevel = 1;
-			if (marker.icon.url.search("-green.png") > 0) markerLevel = 2;
+			if (markerIMG.search("-red.png") > 0) markerLevel = 1;
+			if (markerIMG.search("-green.png") > 0) markerLevel = 2;
 			var requestLevel = 0;
 			if (IMG.search("-red.png") > 0) requestLevel = 1;
 			if (IMG.search("-green.png") > 0) requestLevel = 2;
 			if (requestLevel > markerLevel) {
-				marker.icon.url = IMG;
+				marker.getStyle().setImage(
+				new ol.style.Icon( ({
+          			anchor: markerIMGobj.getAnchor(),
+          			anchorXUnits: 'pixels',
+          			anchorYUnits: 'pixels',
+          			src: IMG
+          		}))
+				
+				);
+				 markerIMGobj=marker.getStyle().getImage();
 			}
 
 		}
-		//Update marker
-		marker.html = marker.html + Description;
+		
+		//Update marker		
+		markerIMGobj.set("html",markerIMGobj.get("html") + description);
 		return undefined;
 	}
+
+
 }
+
+/*
+
+
+	
+
+	infowindow = new google.maps.InfoWindow({
+		content: "holding..."
+	});
+
+
+
+	
+}
+
+
+
+
 
 
 /*******************
@@ -234,7 +308,7 @@ function addMarker(map, nodeResult, name, location) {
 ********************
 Functions that deal with "ADD NODE" dialog
 including GeoCoding and JSON Generation
-*/
+*//*
 
 var customMarker = undefined;
 
@@ -360,5 +434,6 @@ function optionExpand() {
 		$("#mapToggles").addClass('FullHeight');
 	}
 }
-
-google.maps.event.addDomListener(window, 'load', initialize);
+*/
+//google.maps.event.addDomListener(window, 'load', initialize);
+$(document).ready(initialize);
