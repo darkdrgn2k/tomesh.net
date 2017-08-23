@@ -3,18 +3,26 @@ layout: default
 ---
 
 <style>
-	.featurette { display:block; width:100%; padding: 30px 0; }
-.layout3 {
+
+.frontPageTile {
 	width: 32.5%;   
 	display:inline-block; 
 	vertical-align: top;
-	height:360px;
+	height:380px;
     text-align: center;
 }
-.layout3 img { 
+
+.frontPageTile img { 
     max-width:30%; 
     min-height:80px;
 	height: 150px;
+}
+	.frontPageTile .row {
+		height:270px;
+		display:block;
+}
+@media (max-width: 850px) {
+	.frontPageTile { display:block; width:100%;}
 }
 </style>
 
@@ -31,50 +39,68 @@ layout: default
   </div>
 </section>
 
+
+
+<!-- Get Involved section  -->
+<section class="featurette layout3 frontPageTile">
+  <div class="container">
+        <div class="row">
+        <img src="/images/iconCommunity.svg"  alt="Ubiquiti LiteBeam with cables and a computer">
+        <h1><span class="heading-text">Join Us</span></h1>       
+         <p>We welcome more people who want to be involved with mesh networking regardless of skill level.
+        </p>
+        
+      </div>
+<a class="button button-primary" href="{{ site.baseurl }}/get-involved" role="button">Get Involved</a>
+
+	</div>
+</section>
+
 <!-- Map Section -->
-<section class="featurette layout3">
+<section class="featurette layout3 frontPageTile">
   <div class="container">
     <div class="row">
 		<img src="/images/iconLocation.svg"  alt="Ubiquiti LiteBeam with cables and a computer"><br/>
        <h1><span class="heading-text">Node Map</span></h1>
         <p>See map of TOMesh possible and active nodes on an interactive map.
-        </p>
-        <a class="button button-primary" href="{{ site.baseurl }}/map" role="button">See Map</a>
+        </p>        
     </div>
+    <a class="button button-primary" href="{{ site.baseurl }}/map" role="button">See Map</a>
+  </div>
+</section>
+
+<!-- Build Section -->
+<section class="featurette layout3 frontPageTile">
+  <div class="container">
+    <div class="row">
+		<img src="/images/iconLocation.svg"  alt="Ubiquiti LiteBeam with cables and a computer"><br/>
+       <h1><span class="heading-text">Build a node</span></h1>
+        <p>Some text here bla bla bla.
+        </p>        
+    </div>
+    <a class="button button-primary" href="{{ site.baseurl }}/build-a-node" role="button">Build A Map</a>
   </div>
 </section>
 
 
-<!-- Get Involved section  -->
-<section class="featurette layout3">
-  <div class="container">
-        
-        <img src="/images/iconCommunity.svg"  alt="Ubiquiti LiteBeam with cables and a computer">
-        <h1><span class="heading-text">Join Us</span></h1>       
-         <p>We welcome more people who want to be involved with mesh networking regardless of skill level.
-        </p>
-        <a class="button button-primary" href="{{ site.baseurl }}/get-involved" role="button">Get Involved</a>
-      </div>
-
-
-
-</section>
-
-
 <!-- Event section -->
-<section class="featurette layout3">
+<section class="featurette"></section>
+<section class="featurette layout3 frontPageTile" style="width:33%; margin-left:33%; margin-right:33%; ">
         <a href="{{ site.baseurl }}/events" role="link" title="Toronto Mesh Calendar">{% include_absolute _icons/calendar.svg class:icon icon-5x %}</a>
         <h1>Our Next Event</h1>
+        <center>
         {% include next-event.html %}
+        </center>
         <a class="button button-primary" href="{{ site.baseurl }}/events" role="link">More Events</a>
 </section>
 
 
 <!-- Contact Section -->
-<section class="featurette">
+<!--<section class="featurette layout3">
   <div class="container">
     <h1>Have More Questions?</h1>
     <p></p>
     <a class="button button-primary" href="{{ site.baseurl }}/contact" role="button">Contact Us</a>
   </div>
 </section>
+-->
