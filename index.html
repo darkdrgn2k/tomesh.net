@@ -2,6 +2,22 @@
 layout: default
 ---
 
+<style>
+	.featurette { display:block; width:100%; padding: 30px 0; }
+.layout3 {
+	width: 32.5%;   
+	display:inline-block; 
+	vertical-align: top;
+	height:360px;
+    text-align: center;
+}
+.layout3 img { 
+    max-width:30%; 
+    min-height:80px;
+	height: 150px;
+}
+</style>
+
 <!-- About Section -->
 <section class="feature background-tint">
   <div class="container">
@@ -15,39 +31,42 @@ layout: default
   </div>
 </section>
 
-
-<!-- Get Involved section  -->
-<section class="featurette">
+<!-- Map Section -->
+<section class="featurette layout3">
   <div class="container">
     <div class="row">
-      <div class="six columns">
-        <h1><span class="heading-text">Join Us</span></h1>
-        <p>We welcome more people who want to be involved and learn about networking, mesh, and open-source technology regardless of background or skill level. We meet regularly in-person and online.
+		<img src="/images/iconLocation.svg"  alt="Ubiquiti LiteBeam with cables and a computer"><br/>
+       <h1><span class="heading-text">Node Map</span></h1>
+        <p>See map of TOMesh possible and active nodes on an interactive map.
         </p>
-        <a class="button button-primary" href="{{ site.baseurl }}/get-involved" role="button">Get Involved</a>
-      </div>
-      <div class="six columns">
-        <img src="/images/join-image-2x.jpg" srcset="/images/join-image.jpg 1x, /images/join-image-2x.jpg 2x" alt="Ubiquiti LiteBeam with cables and a computer">
-      </div>
+        <a class="button button-primary" href="{{ site.baseurl }}/map" role="button">See Map</a>
     </div>
   </div>
 </section>
 
 
-<!-- Event section -->
-<section class="featurette">
+<!-- Get Involved section  -->
+<section class="featurette layout3">
   <div class="container">
-    <div class="row featurette-events-row">
-      <div class="three columns featurette-events-column">
-        <a href="{{ site.baseurl }}/events" role="link" title="Toronto Mesh Calendar">{% include_absolute _icons/calendar.svg class:icon icon-5x %}</a>
+        
+        <img src="/images/iconCommunity.svg"  alt="Ubiquiti LiteBeam with cables and a computer">
+        <h1><span class="heading-text">Join Us</span></h1>       
+         <p>We welcome more people who want to be involved with mesh networking regardless of skill level.
+        </p>
+        <a class="button button-primary" href="{{ site.baseurl }}/get-involved" role="button">Get Involved</a>
       </div>
-      <div class="nine columns">
+
+
+
+</section>
+
+
+<!-- Event section -->
+<section class="featurette layout3">
+        <a href="{{ site.baseurl }}/events" role="link" title="Toronto Mesh Calendar">{% include_absolute _icons/calendar.svg class:icon icon-5x %}</a>
         <h1>Our Next Event</h1>
         {% include next-event.html %}
         <a class="button button-primary" href="{{ site.baseurl }}/events" role="link">More Events</a>
-      </div>
-    </div>
-  </div>
 </section>
 
 
