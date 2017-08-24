@@ -3,27 +3,43 @@ layout: default
 ---
 
 <style>
-
+.featurette:nth-child(odd) { background:#fdfdfd; }
+.featurette { background:#fdfdfd; }
 .frontPageTile {
 	width: 32.5%;   
 	display:inline-block; 
 	vertical-align: top;
-	height:380px;
+	height:320px;
     text-align: center;
 }
 
 .frontPageTile img { 
-    max-width:30%; 
-    min-height:80px;
-	height: 150px;
+    max-width: 80%;
+    max-height: 154px;
+
 }
 	.frontPageTile .row {
-		height:270px;
+		height:170px;
 		display:block;
+}
+.tileButton  {
+    font-size: 1em !important;
+    width: 225px;
+    text-align: center;
+    margin: 0 auto;
+    display: block;
+    line-height: 31px;
 }
 @media (max-width: 850px) {
 	.frontPageTile { display:block; width:100%;}
 }
+	
+	.site-footer {
+    margin: 3em 0;
+    font-size: 0.85em;
+    background-color: #eeeeff;
+    padding-top: 50px;
+	}
 </style>
 
 <!-- About Section -->
@@ -45,13 +61,9 @@ layout: default
 <section class="featurette layout3 frontPageTile">
   <div class="container">
         <div class="row">
-        <img src="/images/iconCommunity.svg"  alt="Ubiquiti LiteBeam with cables and a computer">
-        <h1><span class="heading-text">Join Us</span></h1>       
-         <p>We welcome more people who want to be involved with mesh networking regardless of skill level.
-        </p>
-        
+        <img src="/images/frontInvolved.jpg"  alt="Get involved with the community">
       </div>
-<a class="button button-primary" href="{{ site.baseurl }}/get-involved" role="button">Get Involved</a>
+<a class="button button-primary tileButton" href="{{ site.baseurl }}/get-involved" role="button">Get Involved</a>
 
 	</div>
 </section>
@@ -60,12 +72,9 @@ layout: default
 <section class="featurette layout3 frontPageTile">
   <div class="container">
     <div class="row">
-		<img src="/images/iconLocation.svg"  alt="Ubiquiti LiteBeam with cables and a computer"><br/>
-       <h1><span class="heading-text">Node Map</span></h1>
-        <p>See map of TOMesh possible and active nodes on an interactive map.
-        </p>        
+		<img src="/images/frontSeeMap.jpg"  alt="Find peopel in your area wanting to mesh!"><br/>
     </div>
-    <a class="button button-primary" href="{{ site.baseurl }}/map" role="button">See Map</a>
+    <a class="button button-primary tileButton" href="{{ site.baseurl }}/map" role="button">See Map</a>
   </div>
 </section>
 
@@ -73,19 +82,16 @@ layout: default
 <section class="featurette layout3 frontPageTile">
   <div class="container">
     <div class="row">
-		<img src="/images/iconLocation.svg"  alt="Ubiquiti LiteBeam with cables and a computer"><br/>
-       <h1><span class="heading-text">Build a node</span></h1>
-        <p>Some text here bla bla bla.
-        </p>        
+		<img src="/images/frontBuild.jpg"  alt="Learn how to build a node"><br/>       
     </div>
-    <a class="button button-primary" href="{{ site.baseurl }}/build-a-node" role="button">Build A Map</a>
+    <a class="button button-primary tileButton"  href="{{ site.baseurl }}/build-a-node" role="button">Build A Node</a>
   </div>
 </section>
 
 
 <!-- Event section -->
-<section class="featurette"></section>
-<section class="featurette layout3 frontPageTile" style="width:33%; margin-left:33%; margin-right:33%; ">
+<div style="background:#eeeeee">
+<section class="featurette layout3" style="width:33%; margin-left:33%; margin-right:33%; height:inherit; display:block; background-color:#eeeeee; text-align: center;">
         <a href="{{ site.baseurl }}/events" role="link" title="Toronto Mesh Calendar">{% include_absolute _icons/calendar.svg class:icon icon-5x %}</a>
         <h1>Our Next Event</h1>
         <center>
@@ -93,7 +99,7 @@ layout: default
         </center>
         <a class="button button-primary" href="{{ site.baseurl }}/events" role="link">More Events</a>
 </section>
-
+</div>
 
 <!-- Contact Section -->
 <!--<section class="featurette layout3">
