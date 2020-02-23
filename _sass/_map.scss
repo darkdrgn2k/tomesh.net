@@ -1,0 +1,183 @@
+html, body, #map_canvas {
+  height: 100%;
+}
+
+.InformationDialog {
+  position: absolute;
+  bottom: 0.4em;
+  left: 1em;
+  width: 1em;
+}
+.InformationDialog a {
+  font-size: 3.5em;
+  font-weight: bold;
+  color:#e3b205;
+  text-decoration: none;
+  text-shadow: 2px 2px 1px rgba($black, 0.1);
+}
+
+.InformationDialog a:hover {
+  color: darken(#e3b205, 5);
+}
+
+.isNotVisible {
+  display:none;
+  visibility: hidden;
+}
+
+#infoDialog {
+  position: fixed;
+  bottom: 40px;
+  left: 40px;
+  background: #ffffff;
+  padding: 10px;
+  margin: 5px;
+  box-shadow: 2px 2px 1px 0 rgba($black, 0.1);
+  font-size: 12px;
+  width:80%;
+}
+#map {
+  padding-top: 55px;
+  height: 100%;
+  width: 100%;
+  min-height: 625px;
+  background-color: #e5e3df;
+  @media (max-width: $on-palm) {
+    padding-top: 44px;
+  }
+}
+
+.markerPop {
+  h1 {
+    margin-bottom: 8px;
+    font-size: 18px;
+  }
+}
+
+.customMarker {
+  position: absolute;
+  top: 70px;
+  left: 13px;
+  width: 425px;
+}
+.customMarker h1 {
+  font-size:14px;
+}
+.dialogInline {
+  width:45%;
+  display:inline-block;
+}
+#customMarkerLng, #customMarkerLat {
+  width:125px;
+}
+.options {
+  position: absolute;
+  padding: 5px;
+  top: 70px;
+  right: 13px;
+  width: 300px;
+}
+
+.customShadowBox {
+  padding: 5px;
+  background: $white;
+  font-size: 0.9em;
+  box-shadow: 2px 2px 1px 0 rgba($black, 0.1);
+}
+
+.box-header {
+  margin: -5px -5px 10px;
+  padding: 8px;
+  background: $black;
+  color: $white;
+  display: flex;
+  justify-content: space-between;
+  line-height: 1em;
+
+  h2 {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+.customMarker a {
+  color: $black;
+  font-weight: bold;
+}
+
+.checkBoxSlider {
+  width: 60px;
+  height: 20px;
+  background: #333;
+  border-radius: 25px;
+  position: relative;
+  display: inline-block;
+
+  input[type=checkbox] {
+    visibility: hidden;
+  }
+
+  label {
+    display: block;
+    width: 26px;
+    height: 11px;
+    border-radius: 25px;
+    transition: all .1s ease;
+    cursor: pointer;
+    position: absolute;
+    top: 4px;
+    z-index: 1;
+    left: 6px;
+    background: #ddd;
+  }
+
+  & input[type=checkbox]:checked + label {
+    left: 30px;
+    background: #26ca28;
+  }
+}
+
+input[type="button"].MapButton, input[type="text"].MapButton {
+  box-shadow:none;
+  background-repeat: no-repeat;background-position: center;
+  border-radius: 0px;
+  border:none;
+}
+
+.expand {
+  display: none;
+}
+
+@media (max-width: $on-palm) {
+  .customMarker {
+    display: none;
+  }
+
+  .options {
+    right: 6px;
+    overflow: hidden;
+    height: 33px;
+    width: 135px;
+  }
+
+  .expand {
+    display: inline;
+  }
+
+  .FullHeight {
+    width: calc(100% - 10px);
+    height: 170px;
+  }
+}
+
+#customMarkerAddress::placeholder {
+  color: #bbbbbb;
+  font-family: "worksans", Helvetica, Arial, sans-serif;
+  font-weight: normal;
+  font-size: 0.9em;
+  text-decoration: none;
+}
+
+#customMarkerAddress {
+  width: 300px
+}

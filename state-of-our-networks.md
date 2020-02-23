@@ -66,7 +66,7 @@ The closest TTC Subway stop is St. George (at Bloor Street and St. George Street
 
 <iframe width="100%" height="250px" frameBorder="0" src="https://a.tiles.mapbox.com/v4/dcwalk.27eme78b/attribution,zoompan.html?access_token=pk.eyJ1IjoiZGN3YWxrIiwiYSI6ImNpZ3NzaWljdzA1ajdzeGtudTNzM3NnanYifQ.kA_-f8oD-sPwjPXfqcv1og"></iframe>
 
-The venue is an accessible space, for more details please see the <a href="http://www.ace.utoronto.ca/website/accessibility/building_data/bl.pdf" target="_blank">building information sheet</a>.<!--_-->
+The venue is an accessible space.
 
 ***
 
@@ -130,15 +130,11 @@ The venue is an accessible space, for more details please see the <a href="http:
 **Karen Louise Smith**{:#karen} is an Assistant Professor in Communication, Popular Culture & Film at Brock University. Her research explores the tensions between openness, privacy, and participation in technologically mediated culture.
 
 <ul class="bio-sm-list">
-  <li class="bio-sm-list-item"><a href="http://karenlouisesmith.net/" target="_blank">{% include_absolute _icons/link.svg class:icon %}&nbsp;karenlouisesmith.net</a></li>
+  <li class="bio-sm-list-item"><a href="http://karenlouisesmith.net/wp/" target="_blank">{% include_absolute _icons/link.svg class:icon %}&nbsp;karenlouisesmith.net</a></li>
   <li class="bio-sm-list-item"><a href="https://twitter.com/smithisgeneric" target="_blank">{% include_absolute _icons/twitter.svg class:icon %}&nbsp;@smithisgeneric</a></li>
 </ul>
 
-**Lee MacNeill**{:#lee} is the President of <a href="http://www.torfree.net/" target="_blank">Toronto Free-Net</a>. He has been involved in computers and networking for 25 years as programmer, network administrator, support technician, and evangelist. His work has ranged from telecommunications to wearable computers&mdash;their practical applications, as well as their impact on democracy, culture, and freedom.
-
-<ul class="bio-sm-list">
-  <li class="bio-sm-list-item"><a href="http://www.torfree.net/" target="_blank">{% include_absolute _icons/link.svg class:icon %}&nbsp;torfree.net</a></li>
-</ul>
+**Lee MacNeill**{:#lee} is the President of Toronto Free-Net. He has been involved in computers and networking for 25 years as programmer, network administrator, support technician, and evangelist. His work has ranged from telecommunications to wearable computers&mdash;their practical applications, as well as their impact on democracy, culture, and freedom.
 
 **MeshISP**{:#meshisp} wants to bridge the digital divide by building the tools that will enable an easily deployable wireless internet sharing economy. Combining [Ethereum](https://www.ethereum.org/) smart contracts to automate many of the functions of a traditional ISP (access and payment) and an encrypted mesh routing protocol that can be run on low-cost wireless hardware, they seek to empower entrepreneurs worldwide to deploy affordable internet options in their communities.
 
